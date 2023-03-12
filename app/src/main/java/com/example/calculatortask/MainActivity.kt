@@ -40,10 +40,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.DecimalEditText.text.isEmpty()) {
-                    return
+                if (s != null &&s.isBlank() && binding.DecimalEditText.hasFocus()) {
+                    binding.apply {
+                        BinaryEditText.setText("")
+                        OctalEditText.setText("")
+                        HexaDecimalEditText.setText("")
+                    }
                 } else
-                    if (binding.DecimalEditText.hasFocus()) {
+                    if (binding.DecimalEditText.hasFocus()&& s != null && s.isNotBlank()) {
                         decimalConversion()
                     }
             }
@@ -59,10 +63,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.BinaryEditText.text.isEmpty()) {
-                    return
+                if (s != null &&s.isBlank() && binding.BinaryEditText.hasFocus()) {
+                    binding.apply {
+                        DecimalEditText.setText("")
+                        OctalEditText.setText("")
+                        HexaDecimalEditText.setText("")
+                    }
                 } else
-                    if (binding.BinaryEditText.hasFocus()) {
+                    if (binding.BinaryEditText.hasFocus()&& s != null && s.isNotBlank()) {
                         binaryConversion()
                     }
             }
@@ -78,10 +86,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.OctalEditText.text.isEmpty()) {
-                    return
+                if (s != null &&s.isBlank() && binding.OctalEditText.hasFocus()) {
+                    binding.apply {
+                        DecimalEditText.setText("")
+                        HexaDecimalEditText.setText("")
+                        BinaryEditText.setText("")
+                    }
                 } else
-                    if (binding.OctalEditText.hasFocus()) {
+                    if (binding.OctalEditText.hasFocus()&& s != null && s.isNotBlank()) {
                         octalConversion()
                     }
             }
@@ -94,10 +106,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.HexaDecimalEditText.text.isEmpty()) {
-                    return
-                } else
-                    if (binding.HexaDecimalEditText.hasFocus()) {
+                if (s != null &&s.isBlank() && binding.HexaDecimalEditText.hasFocus()) {
+                    binding.apply {
+                        DecimalEditText.setText("")
+                        OctalEditText.setText("")
+                        BinaryEditText.setText("")
+                    }
+                } else if (binding.HexaDecimalEditText.hasFocus() && s != null && s.isNotBlank()) {
                         hexaDecimalConverstion()
                     }
             }
