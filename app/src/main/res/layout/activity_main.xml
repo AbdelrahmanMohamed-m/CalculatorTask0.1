@@ -52,26 +52,25 @@
         app:layout_constraintTop_toBottomOf="@+id/OctalEditText" />
 
     <EditText
-        android:padding="16dp"
         android:id="@+id/HexaDecimalEditText"
         android:layout_width="360dp"
         android:layout_height="50dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/rounded"
-        android:ems="10"
         android:digits="0123456789abcdefABCDEF"
+        android:ems="10"
         android:maxLength="15"
-        app:layout_constraintBottom_toTopOf="@+id/ClearBtn"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DecimalEditText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/DecimalEditText" />
 
     <Button
         android:id="@+id/ClearBtn"
         style="@drawable/rounded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
         android:layout_marginBottom="36dp"
         android:backgroundTint="#B9A5FF"
         android:text="@string/clear"
@@ -79,7 +78,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HexaDecimalEditText" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imageView"
@@ -117,8 +117,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/BinaryEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/BinaryEditText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -131,8 +131,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/OctalEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/OctalEditText"
         app:layout_constraintTop_toBottomOf="@+id/BinaryEditText"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -145,8 +145,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/DecimalEditText"
         app:layout_constraintTop_toBottomOf="@+id/OctalEditText"
         app:layout_constraintVertical_bias="0.046" />
 
@@ -159,8 +159,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/HexaDecimalEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/HexaDecimalEditText"
         app:layout_constraintTop_toBottomOf="@+id/DecimalEditText"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
