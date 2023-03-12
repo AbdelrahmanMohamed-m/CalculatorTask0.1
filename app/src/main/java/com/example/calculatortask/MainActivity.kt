@@ -19,17 +19,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearButton() {
         binding.ClearBtn.setOnClickListener {
-           clearEditTexts()
+            clearEditTexts()
         }
     }
-private fun clearEditTexts(){
-    binding.apply {
-        DecimalEditText.setText("")
-        OctalEditText.setText("")
-        HexaDecimalEditText.setText("")
-        BinaryEditText.setText("")
+
+    private fun clearEditTexts() {
+        binding.apply {
+            DecimalEditText.setText("")
+            OctalEditText.setText("")
+            HexaDecimalEditText.setText("")
+            BinaryEditText.setText("")
+        }
     }
-}
+
     private fun convertListeners() {
 
         binding.DecimalEditText.addTextChangedListener(object : TextWatcher {
@@ -83,12 +85,14 @@ private fun clearEditTexts(){
                         octalConversion()
                     }
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
         binding.HexaDecimalEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (binding.HexaDecimalEditText.text.isEmpty()) {
                     return
@@ -97,40 +101,46 @@ private fun clearEditTexts(){
                         hexaDecimalConverstion()
                     }
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
     }
+
     private fun hexaDecimalConverstion() {
         val hexadecimalEditTextValueToDecimal =
-            binding.HexaDecimalEditText.text.toString().toInt(16)
+            binding.HexaDecimalEditText.text.toString().toLong(16)
         binding.DecimalEditText.setText(hexadecimalEditTextValueToDecimal.toString())
         binding.BinaryEditText.setText(convertDecimalToBinary(hexadecimalEditTextValueToDecimal))
         binding.OctalEditText.setText(convertDecimalToOctal(hexadecimalEditTextValueToDecimal))
 
     }
+
     private fun decimalConversion() {
-        val decimalEditTextValue = binding.DecimalEditText.text.toString().toInt()
+        val decimalEditTextValue = binding.DecimalEditText.text.toString().toLong()
         binding.BinaryEditText.setText(convertDecimalToBinary(decimalEditTextValue))
         binding.OctalEditText.setText(convertDecimalToOctal(decimalEditTextValue))
         binding.HexaDecimalEditText.setText(convertDecimalToHexaDecimal(decimalEditTextValue))
     }
+
     private fun binaryConversion() {
-        val changedDecimalValue = binding.BinaryEditText.text.toString().toInt(2)
+        val changedDecimalValue = binding.BinaryEditText.text.toString().toLong(2)
         binding.DecimalEditText.setText(changedDecimalValue.toString())
         binding.OctalEditText.setText(convertDecimalToOctal(changedDecimalValue))
         binding.HexaDecimalEditText.setText(convertDecimalToHexaDecimal(changedDecimalValue))
     }
+
     private fun octalConversion() {
-        val octalEditTextValue = binding.OctalEditText.text.toString().toInt(8)
+        val octalEditTextValue = binding.OctalEditText.text.toString().toLong(8)
         binding.BinaryEditText.setText(convertDecimalToBinary(octalEditTextValue))
         binding.DecimalEditText.setText(octalEditTextValue.toString())
         binding.HexaDecimalEditText.setText(convertDecimalToHexaDecimal(octalEditTextValue))
 
     }
-    private fun convertDecimalToHexaDecimal(decimalNumber: Int) = decimalNumber.toString(16)
-    private fun convertDecimalToBinary(decimalNumber: Int) = decimalNumber.toString(2)
-    private fun convertDecimalToOctal(decimalNumber: Int) = decimalNumber.toString(8)
+
+    private fun convertDecimalToHexaDecimal(decimalNumber: Long) = decimalNumber.toString(16)
+    private fun convertDecimalToBinary(decimalNumber: Long) = decimalNumber.toString(2)
+    private fun convertDecimalToOctal(decimalNumber: Long) = decimalNumber.toString(8)
 }
 
 
