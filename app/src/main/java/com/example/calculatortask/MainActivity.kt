@@ -1,9 +1,8 @@
 package com.example.calculatortask
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.example.calculatortask.databinding.ActivityMainBinding
 
 
@@ -25,101 +24,52 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearEditTexts() {
         binding.apply {
-            DecimalEditText.setText("")
-            OctalEditText.setText("")
-            HexaDecimalEditText.setText("")
-            BinaryEditText.setText("")
+            DecimalEditText.text.clear()
+            OctalEditText.text.clear()
+            HexaDecimalEditText.text.clear()
+            BinaryEditText.text.clear()
         }
     }
 
     private fun convertListeners() {
 
-        binding.DecimalEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        binding.DecimalEditText.doOnTextChanged { text, _, _, _ ->
 
+            if (text != null && text.isBlank() && binding.DecimalEditText.hasFocus()) {
+                clearEditTexts()
+            } else
+                if (binding.DecimalEditText.hasFocus() && text != null && text.isNotBlank()) {
+                    decimalConversion()
+                }
+        }
+
+
+        binding.BinaryEditText.doOnTextChanged { text, _, _, _ ->
+            if (text != null && text.isBlank() && binding.BinaryEditText.hasFocus()) {
+                clearEditTexts()
+            } else
+                if (binding.BinaryEditText.hasFocus() && text != null && text.isNotBlank()) {
+                    binaryConversion()
+                }
+        }
+
+
+        binding.OctalEditText.doOnTextChanged { text, _, _, _ ->
+            if (text != null && text.isBlank() && binding.OctalEditText.hasFocus()) {
+                clearEditTexts()
+            } else
+                if (binding.OctalEditText.hasFocus() && text != null && text.isNotBlank()) {
+                    octalConversion()
+                }
+        }
+        binding.HexaDecimalEditText.doOnTextChanged { text, _, _, _ ->
+            if (text != null && text.isBlank() && binding.HexaDecimalEditText.hasFocus()) {
+                clearEditTexts()
+            } else if (binding.HexaDecimalEditText.hasFocus() && text != null && text.isNotBlank()) {
+                hexaDecimalConverstion()
             }
+        }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null &&s.isBlank() && binding.DecimalEditText.hasFocus()) {
-                    binding.apply {
-                        BinaryEditText.setText("")
-                        OctalEditText.setText("")
-                        HexaDecimalEditText.setText("")
-                    }
-                } else
-                    if (binding.DecimalEditText.hasFocus()&& s != null && s.isNotBlank()) {
-                        decimalConversion()
-                    }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-        })
-        binding.BinaryEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null &&s.isBlank() && binding.BinaryEditText.hasFocus()) {
-                    binding.apply {
-                        DecimalEditText.setText("")
-                        OctalEditText.setText("")
-                        HexaDecimalEditText.setText("")
-                    }
-                } else
-                    if (binding.BinaryEditText.hasFocus()&& s != null && s.isNotBlank()) {
-                        binaryConversion()
-                    }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-        })
-        binding.OctalEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null &&s.isBlank() && binding.OctalEditText.hasFocus()) {
-                    binding.apply {
-                        DecimalEditText.setText("")
-                        HexaDecimalEditText.setText("")
-                        BinaryEditText.setText("")
-                    }
-                } else
-                    if (binding.OctalEditText.hasFocus()&& s != null && s.isNotBlank()) {
-                        octalConversion()
-                    }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
-        binding.HexaDecimalEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null &&s.isBlank() && binding.HexaDecimalEditText.hasFocus()) {
-                    binding.apply {
-                        DecimalEditText.setText("")
-                        OctalEditText.setText("")
-                        BinaryEditText.setText("")
-                    }
-                } else if (binding.HexaDecimalEditText.hasFocus() && s != null && s.isNotBlank()) {
-                        hexaDecimalConverstion()
-                    }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
     }
 
     private fun hexaDecimalConverstion() {
